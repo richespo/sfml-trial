@@ -1,0 +1,4 @@
+src/imgui/*
+bin/Fonts/*
+src/*.o
+src/*.d
