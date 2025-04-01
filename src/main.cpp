@@ -13,6 +13,21 @@
 
 
 
+class Shapes {
+
+    public:
+    const int shapeType = 0;
+    const std::string shapeName = "Unknown";
+    sf::Vector2f positionVec = {0.0,0.0};
+    std::vector<float>speedVec = {0.0,0.0};
+    std::vector<int>colorVec = {0, 0, 0};
+    float scaleFactor = 1.0;
+
+    Shapes() {}
+
+};
+
+
 class CircleShapes {
     
     public:
