@@ -23,66 +23,55 @@ class Shapes {
     std::vector<int>colorVec = {0, 0, 0};
     float scaleFactor = 1.0;
 
-    Shapes() {}
+    Shapes( int type, std::string name, sf::Vector2f initPosition,  std::vector<float>speed, 
+        std::vector<int> color, float scale)
+        :   shapeType(type),
+            shapeName(name),                      
+            positionVec(initPosition),
+            speedVec(speed),
+            colorVec(color)
+        {}
 
 };
 
 
-class CircleShapes {
+class Circles : Shapes {
     
     public:
-    const int shapeType = 0;
-    const std::string shapeName = "Unknown";
-    sf::Vector2f positionVec = {0.0,0.0};
-    std::vector<float>speedVec = {0.0,0.0};
-    std::vector<int>colorVec = {0, 0, 0};
+
     int circleSegments = 32;
     float circleRadius = 0.0;
-    float scaleFactor = 1.0;
     sf::CircleShape circ2Draw;
 
-    CircleShapes( int type, std::string name, sf::Vector2f initPosition,  std::vector<float>speed, 
-        std::vector<int> color, float circRad)
-                    :   shapeType(type),
-                        shapeName(name),                      
-                        positionVec(initPosition),
-                        speedVec(speed),
-                        colorVec(color),
-                        circleRadius(circRad)
+    Circles( int type, std::string name, sf::Vector2f initPosition,  std::vector<float>speed, 
+        std::vector<int> color, float scale, float circRad)
+                    : Shapes {type, name, initPosition, speed, color, scale},                    
+                      circleRadius(circRad)
                     {}
             void makeCircle2Draw()
              {        
                 sf::CircleShape* circ2Draw = new sf::CircleShape();
             }
-    ~CircleShapes() {} 
+    ~Circles() {} 
     }; 
 
-class RectangleShapes {
+class Rectangles  : Shapes {
     
         public:
-        const int shapeType = 0;
-        const std::string shapeName = "Unknown";
-        sf::Vector2f positionVec = {0.0,0.0};
-        std::vector<float>speedVec = {0.0,0.0};
-        std::vector<int>colorVec = {0, 0, 0};
+
         std::vector<float>sizeVec = {0.0,0.0};
-        float scaleFactor = 1.0;
         sf::RectangleShape rect2Draw;
     
-    RectangleShapes( int type, std::string name, sf::Vector2f initPosition,  std::vector<float>speed, 
-        std::vector<int> color, std::vector<float>size)
-                    :   shapeType(type),
-                        shapeName(name),                      
-                        positionVec(initPosition),
-                        speedVec(speed),
-                        colorVec(color),
-                        sizeVec(size)
+    Rectangles( int type, std::string name, sf::Vector2f initPosition,  std::vector<float>speed, 
+        std::vector<int> color, float scale, std::vector<float>size)
+                    :  Shapes {type, name, initPosition, speed, color, scale}, 
+                       sizeVec(size)
                     {}
             void makeRect2Draw()
              {        
                 sf::RectangleShape* rect2Draw = new sf::RectangleShape();
             }
-    ~RectangleShapes() {} 
+    ~Rectangles() {} 
     }; 
 
 
@@ -95,6 +84,7 @@ int main()
     int fontSize;
     int circleSegments = 32;
     std::vector<int>fontColor = {0,0,0};
+    
     std::vector<CircleShapes> circleShapeVec;
     std::vector<RectangleShapes> rectShapeVec;
 
